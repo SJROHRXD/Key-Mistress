@@ -51,9 +51,77 @@
 // password will populate in textfield and be copied to clipboard, alert user "password copied to clipboard"
 // textfield should not be editable (except by clicking the generate button)
 
-var lowerCase = confirm("Use lowercase characters in your password?");
-var upperCase = confirm("Use uppercase characters in your password?");
-var numeric = confirm("Use numeric characters in your password?");
-var special = confirm("Use special characters in your password?");
+const generateBtn = document.querySelector("#generate");
+
+// var lowerCase = confirm("Use lowercase characters in your password?");
+// var upperCase = confirm("Use uppercase characters in your password?");
+// var numeric = confirm("Use numeric characters in your password?");
+// var special = confirm("Use special characters in your password?");
 
 var possibleChars = [];
+
+// Write password to the #password input
+function generatePassword() {
+    const getPasswordLength = () => {
+        const length = parseInt(prompt("Enter the length of the password (between 8 and 128):"));
+        if (length < 8 || length > 128) {
+          alert("Invalid password length. Please try again.");
+          return getPasswordLength();
+        }
+        return length;
+    }
+    const length = getPasswordLength();
+
+    let possibleChars = "";
+
+    if (confirm("Do you want to include lowercase characters?")) {
+        for (let i = 97; i <= 122; i++) {
+          possibleChars += String.fromCharCode(i);
+        }
+      }
+
+    if (confirm("Do you want to include uppercase characters?")) {
+        for (let i = 65; i <= 90; i++) {
+          possibleChars += String.fromCharCode(i);
+        }
+      }
+
+    if (confirm("Do you want to include numeric characters?")) {
+        for (let i = 48; i <= 57; i++) {
+          possibleChars += String.fromCharCode(i);
+        }
+      }
+
+    if (confirm("Do you want to include special characters?")) {
+        const specialCharRanges = [
+            { start: 33, end: 47 },
+            { start: 58, end: 64 },
+            { start: 91, end: 96 },
+            { start: 123, end: 126 },
+          ];
+          for (const range of specialCharRanges) {
+            for (let i = range.start; i <= range.end; i++) {
+              possibleChars += String.fromCharCode(i);
+            }
+          }
+
+    if (possibleChars.length === 0) {
+        alert("At least one character type must be selected.");
+        return generatePassword();
+    }
+
+        let generatedPassword = "";
+
+            for (let i = 0; i < passwordLength; i++) {
+            const randomIndex = Math.floor(Math.random() * possibleChars.length);
+            generatedPassword += possibleChars[randomIndex];
+        }
+
+        // fix this cuz I need a shuffle algorithm
+
+    // You can now display the password and copy it to the clipboard.
+    console.log(generatedPassword);
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", generatePassword);
