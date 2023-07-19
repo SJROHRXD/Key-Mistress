@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KeyMistress - SJR</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KeyMistress - SJR</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>KeyMistress 🗝</h1>
+        </header>
+        <!-- Form for inputs, because prompts and alerts are terrible -->
+        <form id="passwordGeneratorForm">
+            <fieldset>
+                <label for="passwordLength">Length of Password (8-128):</label>
+                <input type="number" id ="passwordLength" name="passwordLength" min="8" max="128" placeholder="Password Length" required>
+            </fieldset>
 
-    <div class="wrapper">
-      <header>
-        <h1>KeyMistress 🗝</h1>
-      </header>
-      <!-- Password Displays Here -->
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-        </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="PW"
-            aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
-      </div>
-    </div>
+            <fieldset>
+                <label for="includeLowerCase">Include Lowercase Characters?</label>
+                <input type="checkbox" id="includeLowerCase" name="includeLowerCase" value="includeLowerCase" checked>
+            </fieldset>
 
-        <!-- Custom Confirm Modal -->
-        <div id="myConfirm" class="modal">
-          <div class="modal-content">
-            <p id="confirmText">PLACEHOLDER</p>
-            <button id="yesButton">Yes</button>
-            <button id="noButton">No</button>
-          </div>
+            <fieldset>
+                <label for="includeUpperCase">Include Uppercase Characters?</label>
+                <input type="checkbox" id="includeUpperCase" name="includeUpperCase" value="includeUpperCase" checked>
+            </fieldset>
+
+            <fieldset>
+                <label for="includeNumeric">Include Numeric Characters (Numbers)?</label>
+                <input type="checkbox" id="includeNumeric" name="includeNumeric" value="includeNumeric" checked>
+            </fieldset>
+            
+            <fieldset>
+                <label for="includeSpecial">Include Special Characters?</label>
+                <input type="checkbox" id="includeSpecial" name="includeSpecial" value="includeSpecial" checked>
+            </fieldset>
+
+            <button type="button" id="generateBtn">Generate Password</button>
+            <button type="button" id="revealBtn">Reveal</button>
+            <button type="reset" id="resetBtn">Start Over</button>
+        </form>
+
+        <div id="passwordDisplay">
+            <label for="passwordOutput">Your Generated Password:</label>
+            <textarea id="passwordOutput" readonly></textarea>
+            <button type="button" id="copyBtn">Copy to Clipboard</button>
         </div>
 
-    <footer>Over-Engineered by SJROHRXD</footer>
-    <script src="script.js"></script>
-  </body>
+        <footer>Over-Engineered by SJROHRXD</footer>
+        <script src="script.js"></script>
+    </body>
 </html>
